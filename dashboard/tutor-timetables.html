@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Timetables</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li class="active"><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="timetable-view">
+            <h1>Tutor Timetables</h1>
+            
+            <div class="filter-options">
+                <div class="search-box">
+                    <input type="text" placeholder="Search tutors...">
+                    <button class="btn">Search</button>
+                </div>
+                
+                <div class="category-filter">
+                    <select>
+                        <option>All Categories</option>
+                        <option>Maths</option>
+                        <option>Science</option>
+                        <option>Humanities</option>
+                        <option>Languages</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="tutor-list">
+                <div class="tutor-card">
+                    <h3>Dr. Smith</h3>
+                    <p class="subject">Mathematics</p>
+                    <div class="availability">
+                        <span class="available">Available: 25/30 hours</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 83%"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">View Timetable</a>
+                </div>
+                
+                <div class="tutor-card">
+                    <h3>Prof. Jones</h3>
+                    <p class="subject">Chemistry</p>
+                    <div class="availability">
+                        <span class="available">Available: 18/20 hours</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">View Timetable</a>
+                </div>
+                
+                <!-- More tutor cards would follow -->
+            </div>
+            
+            <div class="view-options">
+                <div class="time-range">
+                    <button class="btn active">Weekly</button>
+                    <button class="btn">Daily</button>
+                </div>
+                
+                <div class="export-options">
+                    <span>Export as:</span>
+                    <button class="btn">Excel</button>
+                    <button class="btn">PDF</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

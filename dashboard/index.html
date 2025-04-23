@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Timetabling - Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li class="active"><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <h1>AI-Powered Timetabling Dashboard</h1>
+            
+            <div class="quick-actions">
+                <h2>Quick Actions</h2>
+                <div class="action-buttons">
+                    <a href="master-timetable.html" class="btn primary">Generate Master Timetable</a>
+                    <a href="student-timetables.html" class="btn secondary">View Student Timetables</a>
+                    <a href="#" class="btn tertiary">Check for Clashes</a>
+                    <a href="#" class="btn">Run AI Optimization</a>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Students</h3>
+                    <p class="number">142</p>
+                    <p class="label">Currently enrolled</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Tutors</h3>
+                    <p class="number">28</p>
+                    <p class="label">Available</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Venues</h3>
+                    <p class="number">15</p>
+                    <p class="label">Available rooms</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Scheduled</h3>
+                    <p class="number">94%</p>
+                    <p class="label">Of weekly sessions</p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h2>Recent Activity</h2>
+                <ul class="activity-list">
+                    <li>AI optimized timetable for week 12</li>
+                    <li>Added 3 new students to the system</li>
+                    <li>Updated tutor Smith's availability</li>
+                    <li>Exported master timetable to PDF</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

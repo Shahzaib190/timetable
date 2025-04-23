@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue Timetables</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li class="active"><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="timetable-view">
+            <h1>Venue Timetables</h1>
+            
+            <div class="filter-options">
+                <div class="search-box">
+                    <input type="text" placeholder="Search venues...">
+                    <button class="btn">Search</button>
+                </div>
+                
+                <div class="type-filter">
+                    <select>
+                        <option>All Types</option>
+                        <option>Classroom</option>
+                        <option>Laboratory</option>
+                        <option>Lecture Hall</option>
+                        <option>Specialized</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="venue-list">
+                <div class="venue-card">
+                    <h3>Room 12</h3>
+                    <p class="type">Classroom</p>
+                    <div class="utilization">
+                        <span>Utilization: 78%</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 78%"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">View Schedule</a>
+                </div>
+                
+                <div class="venue-card">
+                    <h3>Lab 1</h3>
+                    <p class="type">Chemistry Laboratory</p>
+                    <div class="utilization">
+                        <span>Utilization: 65%</span>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">View Schedule</a>
+                </div>
+                
+                <!-- More venue cards would follow -->
+            </div>
+            
+            <div class="view-options">
+                <div class="time-range">
+                    <button class="btn active">Weekly</button>
+                    <button class="btn">Daily</button>
+                </div>
+                
+                <div class="export-options">
+                    <span>Export as:</span>
+                    <button class="btn">Excel</button>
+                    <button class="btn">PDF</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

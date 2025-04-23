@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Timetable</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li class="active"><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="timetable-view">
+            <h1>Master Timetable</h1>
+            
+            <div class="view-options">
+                <div class="time-range">
+                    <button class="btn active">Weekly</button>
+                    <button class="btn">Daily</button>
+                </div>
+                
+                <div class="export-options">
+                    <span>Export as:</span>
+                    <button class="btn">Excel</button>
+                    <button class="btn">PDF</button>
+                    <button class="btn">Word</button>
+                </div>
+            </div>
+
+            <div class="timetable-container">
+                <!-- Sample timetable grid -->
+                <table class="timetable-grid">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Sample rows - in a real app this would be generated dynamically -->
+                        <tr>
+                            <td>09:00-10:00</td>
+                            <td class="session" rowspan="2">Maths - Tutor Smith (Room 12)</td>
+                            <td class="session">Chemistry - Tutor Jones (Lab 1)</td>
+                            <td class="session">Physics - Tutor Brown (Room 5)</td>
+                            <td class="session">English - Tutor Wilson (Room 8)</td>
+                            <td class="assembly" rowspan="2">Assembly (Main Hall)</td>
+                        </tr>
+                        <tr>
+                            <td>10:00-11:00</td>
+                            <td class="session">History - Tutor Green (Room 7)</td>
+                            <td class="session">Biology - Tutor Black (Lab 2)</td>
+                            <td class="session">Maths - Tutor Smith (Room 12)</td>
+                        </tr>
+                        <!-- More rows would follow -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="timetable-actions">
+                <button class="btn primary">Generate New Timetable</button>
+                <button class="btn secondary">AI Optimize Current</button>
+                <button class="btn">Print Timetable</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

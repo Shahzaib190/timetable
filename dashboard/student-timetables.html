@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Timetables</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li class="active"><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="timetable-view">
+            <h1>Student Timetables</h1>
+            
+            <div class="filter-options">
+                <div class="search-box">
+                    <input type="text" placeholder="Search students...">
+                    <button class="btn">Search</button>
+                </div>
+                
+                <div class="year-filter">
+                    <select>
+                        <option>All Years</option>
+                        <option>First Year</option>
+                        <option>Second Year</option>
+                        <option>Third Year</option>
+                        <option>Fourth Year</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="student-list">
+                <div class="student-card">
+                    <h3>John Doe</h3>
+                    <p class="year">Second Year</p>
+                    <div class="schedule-status">
+                        <span class="complete">Schedule: Complete</span>
+                    </div>
+                    <a href="#" class="btn">View Timetable</a>
+                </div>
+                
+                <div class="student-card">
+                    <h3>Jane Smith</h3>
+                    <p class="year">First Year</p>
+                    <div class="schedule-status">
+                        <span class="partial">Schedule: 85% Complete</span>
+                    </div>
+                    <a href="#" class="btn">View Timetable</a>
+                </div>
+                
+                <!-- More student cards would follow -->
+            </div>
+            
+            <div class="batch-actions">
+                <button class="btn primary">Generate All Student Timetables</button>
+                <button class="btn secondary">AI Optimize Student Schedules</button>
+                <button class="btn">Check for Clashes</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

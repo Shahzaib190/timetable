@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Timetables</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li class="active"><a href="service-timetables.html">Service Timetables</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="timetable-view">
+            <h1>Service Timetables</h1>
+            
+            <div class="service-types">
+                <div class="service-card">
+                    <h3>Assembly</h3>
+                    <p>Scheduled weekly for all students</p>
+                    <div class="next-session">
+                        <span>Next: Friday, 10:00-11:00 (Main Hall)</span>
+                    </div>
+                    <a href="#" class="btn">View Schedule</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3>PHSE Sessions</h3>
+                    <p>Weekly sessions for designated students</p>
+                    <div class="next-session">
+                        <span>Next: Wednesday, 14:00-15:00 (Room 5)</span>
+                    </div>
+                    <a href="#" class="btn">View Schedule</a>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Lunch Break</h3>
+                    <p>Daily 13:00-14:00 for all students</p>
+                    <div class="next-session">
+                        <span>Daily schedule</span>
+                    </div>
+                    <a href="#" class="btn">View Schedule</a>
+                </div>
+                
+                <!-- More service cards would follow -->
+            </div>
+            
+            <div class="service-actions">
+                <button class="btn primary">Add New Service</button>
+                <button class="btn secondary">Edit Service Schedules</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Settings</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Oxford College Timetabling</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="master-timetable.html">Master Timetable</a></li>
+                <li><a href="tutor-timetables.html">Tutor Timetables</a></li>
+                <li><a href="student-timetables.html">Student Timetables</a></li>
+                <li><a href="venue-timetables.html">Venue Timetables</a></li>
+                <li><a href="service-timetables.html">Service Timetables</a></li>
+                <li class="active"><a href="settings.html">Settings</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <span class="username">Welcome, Admin</span>
+            <button id="logoutBtn" class="btn logout">Logout</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="settings-view">
+            <h1>System Settings</h1>
+            
+            <div class="settings-tabs">
+                <div class="tab active" data-tab="general">General</div>
+                <div class="tab" data-tab="ai">AI Configuration</div>
+                <div class="tab" data-tab="constraints">Scheduling Constraints</div>
+                <div class="tab" data-tab="export">Export Options</div>
+            </div>
+            
+            <div class="settings-content">
+                <div class="tab-content active" id="general">
+                    <h2>General Settings</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="college-name">College Name</label>
+                            <input type="text" id="college-name" value="Oxford College">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="academic-year">Academic Year</label>
+                            <input type="text" id="academic-year" value="2023-2024">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="default-view">Default Timetable View</label>
+                            <select id="default-view">
+                                <option>Weekly</option>
+                                <option>Daily</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Save General Settings</button>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="ai">
+                    <h2>AI Optimization Settings</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" checked>
+                                Enable AI Timetable Generation
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="optimization-focus">Optimization Focus</label>
+                            <select id="optimization-focus" multiple>
+                                <option selected>Minimize tutor gaps</option>
+                                <option selected>Minimize room changes</option>
+                                <option selected>Balance student workload</option>
+                                <option>Maximize tutor preferences</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ai-aggressiveness">AI Aggressiveness</label>
+                            <input type="range" id="ai-aggressiveness" min="1" max="5" value="3">
+                            <div class="range-labels">
+                                <span>Conservative</span>
+                                <span>Balanced</span>
+                                <span>Aggressive</span>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Save AI Settings</button>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="constraints">
+                    <h2>Scheduling Constraints</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Standard Hours</label>
+                            <div class="time-range">
+                                <input type="time" value="09:00">
+                                <span>to</span>
+                                <input type="time" value="18:00">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" checked>
+                                Enforce lunch break (13:00-14:00)
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Maximum consecutive sessions per student</label>
+                            <input type="number" value="3" min="1" max="6">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Maximum daily sessions per student</label>
+                            <input type="number" value="6" min="1" max="10">
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Save Constraints</button>
+                    </form>
+                </div>
+                
+                <div class="tab-content" id="export">
+                    <h2>Export Options</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Default Export Format</label>
+                            <select>
+                                <option>PDF</option>
+                                <option>Excel</option>
+                                <option>Word</option>
+                                <option>CSV</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" checked>
+                                Include college logo in exports
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox">
+                                Include color coding in exports
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Save Export Settings</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Oxford College &copy; 2025 | AI Timetabling Solution</p>
+    </footer>
+    
+    <script src="js/script.js"></script>
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '../index.html';
+        }
+        
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('userType');
+            localStorage.removeItem('username');
+            window.location.href = '../index.html';
+        });
+        
+        // Set username in header
+        const username = localStorage.getItem('username');
+        if (username) {
+            document.querySelector('.username').textContent = `Welcome, ${username}`;
+        }
+    </script>
+</body>
+</html>
